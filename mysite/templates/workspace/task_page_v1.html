@@ -1,0 +1,37 @@
+<!doctype html>
+{% extends "workspace/home_v2.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<div class="row">
+    <div class="col  m-3 text-left">
+
+    </div>
+    <div class="col m-3 text-middle">
+        <div class="form-group">
+            <form method="post" action="{% url 'create_task' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>
+                <button class="btn btn-primary" type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="col  m-3 text-middle">
+            {% if task_admin %}
+            <p>
+            <h6>Поставленные задачи:</h6>
+                {% for task in task_admin %}
+                        <div class="text-left">
+                        {{ task.date_time.date }}
+                        {{ task.operator }}
+                        {{ task.outlet }}
+                        </div>
+                {% endfor %}
+                {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+

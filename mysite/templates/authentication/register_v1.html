@@ -1,0 +1,40 @@
+<!doctype html>
+{% extends "workspace/home_v2.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<div class="row">
+    <div class="col  m-3 text-left">
+        <!--        1-->
+    </div>
+    <div class="col m-3 text-middle">
+        <form method="post">
+            {% csrf_token %}
+            <table class="table">
+
+                <tr>
+                    <td>{{ form_register.username.label_tag }}</td>
+                    <td>{{ form_register.username }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_register.password1.label_tag }}</td>
+                    <td>{{ form_register.password1 }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_register.password2.label_tag }}</td>
+                    <td>{{ form_register.password2 }}</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+    <div class="col  m-3 text-middle">
+        <!--        3-->
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+<!doctype html>
+{% extends "workspace/home_v2.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<div class="row">
+    <div class="col  m-3 text-left">
+        <!--        1-->
+    </div>
+    <div class="col m-3 text-middle">
+        <div class="alert alert-primary" role="alert">
+            {{ user.username }} пожалуйста дождитесь одобрения вашей учётной записи администрацией.
+        </div>
+
+    </div>
+    <div class="col  m-3 text-middle">
+        <!--        3-->
+    </div>
+</div>
+
+{% endblock %}
+

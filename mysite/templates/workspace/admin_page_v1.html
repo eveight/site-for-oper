@@ -1,0 +1,69 @@
+<!doctype html>
+{% extends "workspace/home_v2.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<div class="row">
+    <div class="col  m-3 text-left">
+        {% if user_without_perms%}
+            <h6>Новые пользователи:</h6>
+            <form method="post" action="{% url 'user_no_perms' %}">
+                {% for user in user_without_perms %}
+                {% csrf_token %}
+                {{ user.username }}
+                <button class="btn btn-dark btn-sm" type="submit" name="user_no_perms" value="{{ user.id }}">
+                    Одобрить
+                </button>
+                </p>
+                    {% endfor %}
+            </form>
+        {% endif %}
+
+        <h6>Возвраты:</h6>
+
+        {% for refund in refund_for_admin %}
+        {{ refund.date }}
+        {{ refund.user }}
+        </p>
+        {% endfor %}
+    </div>
+    <div class="col m-3 text-middle">
+        {% if outlet_for_admin %}
+        <table class="table">
+            <tr>
+                <th>Дата</th>
+                <th>Название книги</th>
+                <th>Оператор</th>
+                {% for outlet in outlet_for_admin %}
+            </tr>
+
+            <tr>
+                <td>{{ outlet.date_time.date }}</td>
+                <td>{{ outlet.give_outlet.name }}</td>
+                <td>{{ outlet.give_user }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+    <div class="col  m-3 text-middle">
+            <form action="{% url 'create_task' %}" target="_blank">
+                <button class="btn btn-info btn-sm">Создать задачу</button>
+            </form>
+            {% if task_admin %}
+            <p>
+            <h6>Поставленные задачи:</h6>
+                {% for task in task_admin %}
+                        <div class="text-left">
+                        {{ task.date_time.date }}
+                        {{ task.operator }}
+                        {{ task.outlet }}
+                        </div>
+                {% endfor %}
+                {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
